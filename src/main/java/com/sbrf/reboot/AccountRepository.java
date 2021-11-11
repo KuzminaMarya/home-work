@@ -8,7 +8,7 @@ public class AccountRepository implements AccountServiceInterface {
     private Long clientId;
 
     public AccountRepository(Long clientId, Set<Account> accounts) {
-        this.accounts=accounts;
+        this.accounts = accounts;
         this.clientId = clientId;
     }
 
