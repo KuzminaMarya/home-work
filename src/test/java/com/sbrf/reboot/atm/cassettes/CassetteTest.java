@@ -1,5 +1,7 @@
 package com.sbrf.reboot.atm.cassettes;
 
+import com.sbrf.reboot.Banknote;
+import com.sbrf.reboot.Cassette;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +19,12 @@ class CassetteTest {
     void getCountBanknotes() {
         OneHundred oneHundred = new OneHundred();
 
-        Cassette<OneHundred> cassette = new Cassette<>(new ArrayList<OneHundred>() {{
+        Cassette<Banknote> cassette = new Cassette<>(new ArrayList<Banknote>() {{
             add(oneHundred);
-//            add(new OneThousand()); //it will not compile
-//            add(new Banknote()); //it will not compile
+            add(new OneThousand());
+            add(new Banknote());
         }});
 
-        Assertions.assertEquals(1, cassette.getCountBanknotes());
+        Assertions.assertEquals(3, cassette.getCountBanknotes());
     }
 }
