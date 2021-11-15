@@ -5,29 +5,27 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class AccountRepositoryImpl implements AccountServiceInterface {
+public class AccountRepositoryImpl extends AccountRepository implements AccountServiceInterface {
+    private String file;
+
+    public AccountRepositoryImpl(String file) {
+        super(1L, new HashSet<>());
+        this.file = file;
+    }
 
     @Override
-    public Set<Account> getAllAccountsByClientId(long clientId) throws FileNotFoundException {
+    public Set<Account> getAllAccountsByClientId(long clientId) throws IOException {
         Set<Account> accounts = new HashSet<>();
-        try {
-            String number;
-            InputStream inputStream = new FileInputStream("C:/Users/Lenovo/Documents/Git/home-work/src/main/resources/Accounts.txt");
-            BufferedReader bf= new BufferedReader(new InputStreamReader(inputStream));
-            while ((number=bf.readLine())!=null){
-                accounts.add(new Account(number));
-            }
-            bf.close();
-            inputStream.close();
+        String number;
+        InputStream inputStream = new FileInputStream(file);
+        BufferedReader bf = new BufferedReader(new InputStreamReader(inputStream));
+        while ((number = bf.readLine()) != null) {
+            accounts.add(new Account(number));
         }
-        catch (FileNotFoundException e)
-        {
-            System.out.println("Файл с перечнем счетов не найден!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        AccountRepository accountRepository = new AccountRepository(clientId,accounts);
-        Iterator<Account> it =accountRepository.getAccounts().iterator();
+        bf.close();
+        inputStream.close();
+        AccountRepository accountRepository = new AccountRepository(clientId, accounts);
+        Iterator<Account> it = accountRepository.getAccounts().iterator();
         System.out.println("Для клиента c id " + accountRepository.getClientId() + " счета :");
         while (it.hasNext()) {
             System.out.println(it.next().getNumber());
