@@ -46,6 +46,4 @@ class AccountRepositoryImplTest {
             accountRepository.getAllAccountsByClientId(1L);
         });
     }
-
-
 }
