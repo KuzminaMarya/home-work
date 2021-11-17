@@ -40,6 +40,20 @@ class AccountRepositoryImplTest {
     }
 
     @Test
+    void successUpdateAccountByClientId() throws IOException {
+        accountRepository = new AccountRepositoryImpl("src/main/resources/Accounts.txt");
+        ArrayList<String> strings = new ArrayList<String>() {{
+            add("3-ACMMUM");
+            add("1-ACCNUM");
+            add("4-ACC1NUM");
+        }};
+        accountRepository.updateAccountByClientId(1L,"2-ACCNUM","3-ACMMUM","src/main/resources/Accounts.txt");
+        Set<Account> allAccountsByClientId = accountRepository.getAllAccountsByClientId(1);
+        allAccountsByClientId.forEach(e -> assertTrue(strings.contains(e.getNumber())));
+        accountRepository.updateAccountByClientId(1L,"3-ACMMUM","2-ACCNUM","src/main/resources/Accounts.txt");
+    }
+
+    @Test
     void failGetAllAccountsByClientId() {
         accountRepository = new AccountRepositoryImpl("Accounts.txt");
         assertThrows(FileNotFoundException.class, () -> {

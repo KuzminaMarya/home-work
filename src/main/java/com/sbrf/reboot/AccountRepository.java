@@ -1,8 +1,8 @@
 package com.sbrf.reboot;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class AccountRepository implements AccountServiceInterface {
@@ -33,5 +33,23 @@ public class AccountRepository implements AccountServiceInterface {
     @Override
     public Set<Account> getAllAccountsByClientId(long clientId) throws IOException {
         return this.accounts;
+    }
+
+    public void updateAccountByClientId(long clientId, String number, String newNumber, String file) throws IOException {
+        Set<Account> accounts=getAllAccountsByClientId(clientId);
+        OutputStream outStream = new FileOutputStream(file);
+        BufferedWriter bf = new BufferedWriter(new OutputStreamWriter(outStream));
+        bf.write("");
+        Iterator<Account> it = accounts.iterator();
+        while (it.hasNext()) {
+            String num=it.next().getNumber();
+            if (!num.equals(number)){
+                bf.write(num);
+                bf.newLine();
+            }
+        }
+        bf.write(newNumber);
+        bf.close();
+        outStream.close();
     }
 }
