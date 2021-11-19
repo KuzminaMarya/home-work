@@ -1,5 +1,8 @@
 package com.sbrf.reboot;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class AccountService {
     private AccountRepository accountRepository;
 
@@ -15,7 +18,7 @@ public class AccountService {
         return accountRepository;
     }
 
-    public boolean isAccountExist(long clientId, Account account) {
+    public boolean isAccountExist(long clientId, Account account) throws IOException {
         if (this.accountRepository.getAllAccountsByClientId(1L).contains(account)) {
             return true;
         } else {
