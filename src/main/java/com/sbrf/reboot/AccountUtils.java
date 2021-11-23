@@ -1,23 +1,13 @@
 package com.sbrf.reboot;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AccountUtils {
     public static void sortedById(List<Account> accounts) {
-        boolean isSorted=false;
-        Account buf;
-        while (!isSorted){
-           isSorted=true;
-            for (int i = 0; i < accounts.size()-1; i++) {
-                if(accounts.get(i).getId()>accounts.get(i+1).getId()){
-                    isSorted=false;
-
-                    buf=accounts.get(i);
-                    accounts.remove(i);
-                    accounts.add(i+1,buf);
-                }
-            }
-        }
+        Comparator<Account> comparator=Comparator.comparing(account -> account.getId());
+        Collections.sort(accounts,comparator);
     }
 
     public static void sortedByIdDate(List<Account> accounts) {
