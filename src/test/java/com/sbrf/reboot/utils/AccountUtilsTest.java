@@ -8,9 +8,6 @@ import java.time.LocalDate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 class AccountUtilsTest {
 
@@ -65,7 +62,7 @@ class AccountUtilsTest {
         Assertions.assertEquals(LocalDate.now().minusDays(3), accounts.get(2).getCreateDate());
         Assertions.assertEquals(LocalDate.now().minusDays(1), accounts.get(3).getCreateDate());
         Assertions.assertEquals(LocalDate.now().minusDays(1), accounts.get(4).getCreateDate());
-        Assertions.assertEquals(BigDecimal.valueOf(28000), accounts.get(3).getBalance());
-        Assertions.assertEquals(BigDecimal.valueOf(26000), accounts.get(4).getBalance());
+        Assertions.assertEquals(BigDecimal.valueOf(26000), accounts.get(3).getBalance());
+        Assertions.assertEquals(BigDecimal.valueOf(28000), accounts.get(4).getBalance());
     }
 }
