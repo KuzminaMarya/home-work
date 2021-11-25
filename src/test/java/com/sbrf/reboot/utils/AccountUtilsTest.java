@@ -4,10 +4,12 @@ import com.sbrf.reboot.Account;
 import com.sbrf.reboot.AccountUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class AccountUtilsTest {
 
@@ -26,6 +28,10 @@ class AccountUtilsTest {
         Assertions.assertEquals(2L, accounts.get(1).getId());
         Assertions.assertEquals(3L, accounts.get(2).getId());
         Assertions.assertEquals(3L, accounts.get(3).getId());
+        Assertions.assertEquals(Arrays.asList(Account.builder().id(1L).createDate(LocalDate.now()).balance(BigDecimal.TEN).build(),
+                Account.builder().id(2L).createDate(LocalDate.now()).balance(BigDecimal.TEN).build(),
+                Account.builder().id(3L).createDate(LocalDate.now()).balance(BigDecimal.TEN).build(),
+                Account.builder().id(3L).createDate(LocalDate.now()).balance(BigDecimal.TEN).build()), accounts);
     }
 
     @Test

@@ -42,4 +42,13 @@ public class Account {
     public BigDecimal getBalance() {
         return balance;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        Account account=(Account)obj;
+        if(this.getId()==account.getId())
+            return true;
+        else
+            return false;
+    }
 }
