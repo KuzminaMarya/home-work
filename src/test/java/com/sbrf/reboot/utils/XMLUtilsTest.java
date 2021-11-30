@@ -1,11 +1,13 @@
 package com.sbrf.reboot.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sbrf.reboot.XMLUtils;
 import com.sbrf.reboot.dto.Request;
 import com.sbrf.reboot.dto.Response;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 class XMLUtilsTest {
 
@@ -24,13 +26,13 @@ class XMLUtilsTest {
     }
 
     @Test
-    void XMLtoRequest() throws JsonProcessingException {
+    void XMLtoRequest() throws IOException {
         Request request = XMLUtils.XMLtoRequest("<Request><atmNumber>ATM12345</atmNumber></Request>");
         Assertions.assertEquals("ATM12345", request.getAtmNumber());
     }
 
     @Test
-    void XMLtoResponse() throws JsonProcessingException {
+    void XMLtoResponse() throws IOException {
         Response request = XMLUtils.XMLtoResponse("<Response><statusCode>SUCCESS</statusCode></Response>");
         Assertions.assertEquals("SUCCESS", request.getStatusCode());
     }
