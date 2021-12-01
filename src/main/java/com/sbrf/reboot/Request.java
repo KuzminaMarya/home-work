@@ -1,4 +1,4 @@
-package com.sbrf.reboot.dto;
+package com.sbrf.reboot;
 
 import java.io.Serializable;
 

@@ -2,15 +2,7 @@ package com.sbrf.reboot;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.sbrf.reboot.dto.Request;
-import com.sbrf.reboot.dto.Response;
-import com.sun.deploy.xml.XMLNode;
-
-import javax.xml.stream.XMLStreamReader;
-import java.io.*;
-
 
 public class XMLUtils {
     public static String toXML(Request request) throws JsonProcessingException {
