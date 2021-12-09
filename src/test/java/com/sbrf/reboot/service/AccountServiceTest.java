@@ -53,7 +53,7 @@ class AccountServiceTest {
 
         assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
     }
-
+    
     @SneakyThrows
     @Test
     void getMaxAccountBalance() {
