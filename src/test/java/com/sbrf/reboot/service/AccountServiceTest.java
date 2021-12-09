@@ -117,5 +117,4 @@ class AccountServiceTest {
 
         assertEquals(accountWithMaxBalance.getBalance(), accountService.getMinAccountBalance(1L));
     }
-
 }
