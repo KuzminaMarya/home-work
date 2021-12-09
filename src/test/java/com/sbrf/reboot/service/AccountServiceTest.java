@@ -70,7 +70,6 @@ class AccountServiceTest {
         assertEquals(accountWithMaxBalance.getBalance(), accountService.getMaxAccountBalance(1L));
     }
 
-
     @SneakyThrows
     @Test
     void getAllAccountsByDateMoreThen() {
