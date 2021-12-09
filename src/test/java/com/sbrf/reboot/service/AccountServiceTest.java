@@ -27,7 +27,6 @@ class AccountServiceTest {
     @BeforeEach
     void setUp() {
         accountRepository = Mockito.mock(AccountRepository.class);
-
         accountService = new AccountService(accountRepository);
     }
 
@@ -53,7 +52,7 @@ class AccountServiceTest {
 
         assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
     }
-    
+
     @SneakyThrows
     @Test
     void getMaxAccountBalance() {
