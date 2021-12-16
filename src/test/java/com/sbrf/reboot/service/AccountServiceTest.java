@@ -27,7 +27,7 @@ class AccountServiceTest {
     }
 
     @Test
-    void bookExist(){
+    void bookExist() {
         Account account = new Account("ACC1234NUM");
         Set<Account> accounts = new HashSet();
         accounts.add(account);
@@ -38,7 +38,7 @@ class AccountServiceTest {
     }
 
     @Test
-    void bookNotExist(){
+    void bookNotExist() {
         Set<Account> accounts = new HashSet();
         accounts.add(new Account("ACC1234NUM"));
 
