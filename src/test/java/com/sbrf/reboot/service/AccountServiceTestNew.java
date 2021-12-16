@@ -17,7 +17,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-class AccountNewServiceTestNew {
+class AccountServiceTestNew {
 
     @Mock
     AccountRepositoryNew accountRepositoryNew;
