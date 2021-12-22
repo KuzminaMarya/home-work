@@ -23,7 +23,7 @@ public class MainReport {
                 Stream<AccountC> streamAccount = iterator.next().getAccount().stream();
                 sumBalance += streamAccount.filter(accountC -> accountC.getDateCreated().isAfter(LocalDate.of(2021, 7, 1)) && accountC.getDateCreated().isBefore(LocalDate.of(2021, 8, 1)) && accountC.getCurrency().equals("RUB")).mapToInt(value -> value.getBalance()).sum();
             }
-            System.out.println("Result of the asynchronous computation");
+            System.out.println("Результат получен ассинхронно");
             return sumBalance;
         });
 
