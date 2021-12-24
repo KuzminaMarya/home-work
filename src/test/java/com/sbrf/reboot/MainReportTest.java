@@ -1,6 +1,10 @@
 package com.sbrf.reboot;
 
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,15 +60,10 @@ public class MainReportTest {
             add(new Customer(31,"Mary", accountMary));
             add(new Customer(20,"Nik", accountNik));
         }};
-        final int[] sumbalance=new int[1];
-        Thread thread=new Thread(() -> {
-            try {
-                sumbalance[0]=MainReport.getTotalsWithReact(accountCustomer.stream());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Результат из побочного потока");
-    });
+        final int[] sumbalance = {0};
+        Scheduler s=Schedulers.parallel();
+        final Flux<Integer> sum=Flux.just(MainReport.getTotalsWithReact(accountCustomer.stream())).map(i-> sumbalance[0] +=i).publishOn(s);
+        Thread thread=new Thread(() -> sum.subscribe(v->System.out.println("Результат из побочного потока: "+v)));
         thread.start();
         thread.join();
         assertEquals(3000, sumbalance[0]);
