@@ -7,6 +7,14 @@
     <bean id="clientBean"
           class="com.sbrf.reboot.ClientBean">
         <constructor-arg value="Neil"/>
+        <constructor-arg value="32"/>
+    </bean>
+
+    <bean id="accountBean"
+          class="com.sbrf.reboot.AccountBean">
+        <constructor-arg value="234"/>
+        <constructor-arg value="56789"/>
+        <constructor-arg value="USD"/>
     </bean>
 
 </beans>
