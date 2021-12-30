@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>JSP - Main</title>
 </head>
 <body>
 <h1><%= "Привет, кликните <<Перейти к сервлету!>>" %>
