@@ -67,7 +67,7 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson-dataformat-xml.version}</version>
         </dependency>
-          <dependency>
+        <dependency>
             <groupId>org.reactivestreams</groupId>
             <artifactId>reactive-streams</artifactId>
             <version>1.0.3</version>
@@ -105,4 +105,5 @@
             </plugin>
         </plugins>
     </build>
+         
 </project>
