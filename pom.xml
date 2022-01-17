@@ -104,5 +104,5 @@
                 <version>${maven-surefire-plugin.version}</version>
             </plugin>
         </plugins>
-    </build>       
+    </build>
 </project>
