@@ -9,22 +9,30 @@ import java.util.stream.*;
 
 public class MainReport {
 
-    static public int getTotalsWithCompletableFuture(Stream<Customer> streamCustomer) throws InterruptedException, ExecutionException {
-        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(()
+    public static CompletableFuture<Set<Customer>> getCustomers(Stream<Customer> streamCustomer) {
+        System.out.println("Выполнено в одном потоке");
+        return CompletableFuture.supplyAsync(()
                 -> {
             Set<Customer> customers = streamCustomer.filter(customer -> customer.getAge() >= 18 && customer.getAge() <= 30).collect(Collectors.toSet());
             return customers;
-        }).thenApplyAsync(result-> {
-            //Выполняется в другом потоке, взятом из ForkJoinPool.commonPool()
+        });
+    }
+
+    public static CompletableFuture<Integer> getTotals(Set<Customer> customers) {
+        System.out.println("Выполнено в другом потоке");
+        return CompletableFuture.supplyAsync(() -> {
             int sumBalance = 0;
-            for (Customer customer : result) {
+            for (Customer customer : customers) {
                 Stream<AccountC> streamAccount = customer.getAccount().stream();
                 sumBalance += streamAccount.filter(accountC -> accountC.getDateCreated().isAfter(LocalDate.of(2021, 7, 1)) && accountC.getDateCreated().isBefore(LocalDate.of(2021, 8, 1)) && accountC.getCurrency().equals("RUB")).mapToInt(value -> value.getBalance()).sum();
             }
-            System.out.println("Выполнено в другом потоке, взятом из ForkJoinPool.commonPool()");
             return sumBalance;
         });
-        return future.get();
+    }
+
+    static public int getTotalsWithCompletableFuture(Stream<Customer> streamCustomer) throws InterruptedException, ExecutionException {
+        CompletableFuture<Integer> result = getCustomers(streamCustomer).thenCompose(customers->getTotals(customers));
+        return result.get();
     }
 
    static public int getTotalsWithReact(Stream<Customer> streamCustomer) throws InterruptedException {
