@@ -12,13 +12,13 @@ import java.io.PrintWriter;
 @WebServlet(name = "mainServlet", value = "/main-servlet")
 public class MainServlet extends HttpServlet {
 
-    private volatile int Counter=0;
+    private volatile Integer Counter=0;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Counter = (int) session.getAttribute("Counter");
-        if (Counter == 0) {
+        Counter = (Integer) session.getAttribute("Counter");
+        if (Counter == null) {
             Counter = 1;
         } else {
             Counter++;
